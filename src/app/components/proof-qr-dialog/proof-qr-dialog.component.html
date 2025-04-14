@@ -1,0 +1,72 @@
+<mat-dialog-content>
+  <div class="certificate" *ngIf="!error; else errorTpl">
+    <div class="certificate-header">
+      <div class="zkp-badge">ZKP Secured</div>
+      <h1>Certificate of KYC Verification</h1>
+      <div class="certificate-seal">✓</div>
+    </div>
+
+    <div class="certificate-body">
+      <p class="certificate-text">
+        This is to certify that
+        <span class="highlight">{{data.name}}</span>
+        has successfully completed the Know Your Customer (KYC) verification process using Zero-Knowledge Proof technology on
+        <span class="highlight">{{verificationDate}}</span>
+      </p>
+
+      <div class="verification-details">
+        <h3>Verified Information</h3>
+        <div class="verified-list">
+          <div class="verified-item">
+            <mat-icon class="verified-icon">check_circle</mat-icon>
+            <span>Identity verified by authorized bank</span>
+          </div>
+          <div class="verified-item">
+            <mat-icon class="verified-icon">check_circle</mat-icon>
+            <span>Client's cryptographic signature</span>
+          </div>
+          <div class="verified-item">
+            <mat-icon class="verified-icon">check_circle</mat-icon>
+            <span>Bank's cryptographic signature</span>
+          </div>
+          <div class="verified-item">
+            <mat-icon class="verified-icon">check_circle</mat-icon>
+            <span>Verification timestamp authenticity</span>
+          </div>
+          <div class="verified-item">
+            <mat-icon class="verified-icon">check_circle</mat-icon>
+            <span>Zero-knowledge proof validity</span>
+          </div>
+        </div>
+
+        <div class="public-data" *ngIf="data.publicSignals">
+          <button mat-button class="expand-button" (click)="showPublicData = !showPublicData">
+            <mat-icon>{{showPublicData ? 'expand_less' : 'expand_more'}}</mat-icon>
+            Public Data
+          </button>
+          <div class="public-data-content" *ngIf="showPublicData">
+            <pre><code>{{formatPublicData()}}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <mat-spinner *ngIf="loading"></mat-spinner>
+        <div class="qr-container" *ngIf="!loading">
+          <img [src]="qrDataUrl" alt="Proof QR Code" />
+          <p class="qr-help">Verification Data ({{compressedSize | number}} bytes)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #errorTpl>
+    <div class="error-message">
+      {{ error }}
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

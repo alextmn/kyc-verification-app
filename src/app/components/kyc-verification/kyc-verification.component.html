@@ -1,0 +1,134 @@
+<div class="kyc-container">
+  <div class="home-link">
+    <a mat-raised-button color="primary" routerLink="/" class="home-button">
+      <mat-icon>home</mat-icon>
+      Back to Home
+    </a>
+  </div>
+
+  <h1>KYC Verification Demo</h1>
+
+  <!-- Bank Public Key -->
+  <div class="section" *ngIf="bankPublicKey">
+    <h2>Bank Public Key</h2>
+    <div class="key-info">
+      <div class="key-details">
+        <p>X: {{bankPublicKey.x}}</p>
+        <p>Y: {{bankPublicKey.y}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Key Pair -->
+  <div class="section">
+    <h2>Client Key Pair</h2>
+    <button mat-raised-button color="primary" (click)="generateNewKeyPair()" [disabled]="loading">
+      Generate New Key Pair
+    </button>
+    
+    <div class="key-info" *ngIf="clientKeyPair">
+      <h3>Public Key:</h3>
+      <div class="key-details">
+        <p>X: {{clientKeyPair.publicKey.x}}</p>
+        <p>Y: {{clientKeyPair.publicKey.y}}</p>
+      </div>
+      <h3>Private Key:</h3>
+      <p class="private-key">{{clientKeyPair.privateKey}}</p>
+    </div>
+  </div>
+
+  <!-- KYC Form -->
+  <div class="section">
+    <h2>KYC Information</h2>
+    <form [formGroup]="kycForm" (ngSubmit)="generateProof()">
+      <mat-form-field appearance="fill">
+        <mat-label>Client Name</mat-label>
+        <input matInput formControlName="clientName" placeholder="Enter client name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date and Time</mat-label>
+        <input matInput formControlName="dateTime" type="datetime-local">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!kycForm.valid || loading || !clientKeyPair">
+        Generate Proof
+      </button>
+    </form>
+  </div>
+
+  <!-- Proof Data -->
+  <div class="section" *ngIf="proofData">
+    <h2>Generated Proof</h2>
+    <div class="proof-data">
+      <div class="proof-details">
+        <form [formGroup]="proofForm">
+          <h3>Public Signals</h3>
+          <div class="signals-info">
+            <p>Public signals represent the public inputs to the proof verification:</p>
+            <ul>
+              <li><strong>[0]:</strong> Client's Public Key</li>
+              <li><strong>[1]:</strong> Date and Time of Verification</li>
+              <li><strong>[2]:</strong> Client's Name (encoded)</li>
+              <li><strong>[3]:</strong> Bank's Public Key (X coordinate)</li>
+              <li><strong>[4]:</strong> Bank's Public Key (Y coordinate)</li>
+            </ul>
+          </div>
+          <div class="signals-container">
+            <textarea
+              formControlName="publicSignals"
+              [class.invalid-json]="!isValidPublicSignals"
+              placeholder="Edit public signals JSON..."
+            ></textarea>
+          </div>
+
+          <div class="proof-header">
+            <h3>Proof</h3>
+            <button mat-raised-button color="accent" (click)="showQrCode()" [disabled]="!isValidProof">
+              <mat-icon>verified</mat-icon>
+              <span>Get KYC Certificate</span>
+            </button>
+          </div>
+          <div class="proof-container">
+            <textarea
+              formControlName="proof"
+              [class.invalid-json]="!isValidProof"
+              placeholder="Edit proof JSON..."
+            ></textarea>
+          </div>
+        </form>
+
+        <button mat-raised-button color="accent" (click)="verifyProof()" [disabled]="loading">
+          Verify Proof
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verification Result -->
+  <div class="section" *ngIf="verificationResult">
+    <h2>Verification Result</h2>
+    <div class="verification-result" [ngClass]="{'success': verificationResult.verified, 'error': !verificationResult.verified}">
+      <h3>Status: {{verificationResult.verified ? 'Verified ✓' : 'Failed ✗'}}</h3>
+      
+      <div *ngIf="verificationResult.verified">
+        <h3>Verified Public Signals:</h3>
+        <div class="verified-data">
+          <p><strong>Client Name:</strong> {{verificationResult.publicSignals.clientName}}</p>
+          <p><strong>Timestamp:</strong> {{verificationResult.publicSignals.dateTime | date:'medium'}}</p>
+          <p><strong>Client Public Key:</strong> {{verificationResult.publicSignals.clientPublicKey}}</p>
+          <p><strong>Bank Public Key:</strong></p>
+          <pre>{{verificationResult.publicSignals.bankPublicKey | json}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Display -->
+  <div class="error-message" *ngIf="error">
+    {{error}}
+  </div>
+
+  <!-- Loading Indicator -->
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+</div>
