@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "timestamp": 1744649448426,
+  "index": "/kyc-verification-app/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/kyc-verification-app/573.2203603e4fe2a603.js",
+        "/kyc-verification-app/index.html",
+        "/kyc-verification-app/main.9afbd11596418cbe.js",
+        "/kyc-verification-app/polyfills.213ecebe95ea2282.js",
+        "/kyc-verification-app/runtime.a36c54807ceee32e.js",
+        "/kyc-verification-app/styles.6507e0fc35322572.css",
+        "/kyc-verification-app/vendor.d77aee88884a13bf.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/kyc-verification-app/assets/icons/icon-128x128.png",
+        "/kyc-verification-app/assets/icons/icon-144x144.png",
+        "/kyc-verification-app/assets/icons/icon-152x152.png",
+        "/kyc-verification-app/assets/icons/icon-192x192.png",
+        "/kyc-verification-app/assets/icons/icon-384x384.png",
+        "/kyc-verification-app/assets/icons/icon-512x512.png",
+        "/kyc-verification-app/assets/icons/icon-72x72.png",
+        "/kyc-verification-app/assets/icons/icon-96x96.png",
+        "/kyc-verification-app/assets/merkle_verify_signed.wasm",
+        "/kyc-verification-app/assets/merkle_verify_signed_0001.zkey",
+        "/kyc-verification-app/assets/verification_key.json"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/kyc-verification-app/573.2203603e4fe2a603.js": "7933589ac7da50f5d635e665f018ceef98a09e91",
+    "/kyc-verification-app/assets/icons/icon-128x128.png": "b1f06c7d714abb4a0cc4d1f7c954feb26826e4c4",
+    "/kyc-verification-app/assets/icons/icon-144x144.png": "96a0d629765c1bc85d9263c6bc83094ca776d267",
+    "/kyc-verification-app/assets/icons/icon-152x152.png": "b1fbbee3902eb96a7658e3bb006f31f78ca5a44c",
+    "/kyc-verification-app/assets/icons/icon-192x192.png": "e4211163bf0911688fbfb80278d8ff4d2f77691d",
+    "/kyc-verification-app/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/kyc-verification-app/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/kyc-verification-app/assets/icons/icon-72x72.png": "279825a1ac4377032ae996a1832c641e33ccf1b6",
+    "/kyc-verification-app/assets/icons/icon-96x96.png": "592885efcbfee27e5e20be4fa3043589390d2740",
+    "/kyc-verification-app/assets/merkle_verify_signed.wasm": "74821acc65c17084b09b29652b2b4f02c243b160",
+    "/kyc-verification-app/assets/merkle_verify_signed_0001.zkey": "96d16672212fec267dd0bc15446914422f58cd25",
+    "/kyc-verification-app/assets/verification_key.json": "948c61cfdb7053e22b0df5ee001402f2aec9de67",
+    "/kyc-verification-app/index.html": "5c3c7fe9374f7bb69f2c4ec256ef94ceea98984c",
+    "/kyc-verification-app/main.9afbd11596418cbe.js": "ec8ff42278889557ec1a4e0c085a8d42ffec2a35",
+    "/kyc-verification-app/polyfills.213ecebe95ea2282.js": "28afbc31c27515591ebb6120a3fe78e0ac08d8b5",
+    "/kyc-verification-app/runtime.a36c54807ceee32e.js": "3e9139c7efcd82f04afc9dfe1554d20c57572189",
+    "/kyc-verification-app/styles.6507e0fc35322572.css": "1c428c356d3ad7dd744d877cb29ee6f7ce441188",
+    "/kyc-verification-app/vendor.d77aee88884a13bf.js": "a7fae9877b7edaf53f45752f7940081d15ce6c6c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
