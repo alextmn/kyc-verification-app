@@ -9,7 +9,7 @@
 
 A modern, privacy-focused Know Your Customer (KYC) verification system powered by Zero-Knowledge Proofs. Verify customer identities while maintaining complete privacy and security.
 
-[🚀 Live Demo](https://your-demo-url.com) 
+[🚀 Live Demo](https://alextmn.github.io/kyc-verification-app/verify) 
 
 </div>
 

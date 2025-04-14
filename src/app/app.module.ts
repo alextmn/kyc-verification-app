@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { KycVerificationComponent } from './components/kyc-verification/kyc-verification.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProofQrDialogComponent } from './components/proof-qr-dialog/proof-qr-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,13 @@ import { ProofQrDialogComponent } from './components/proof-qr-dialog/proof-qr-di
     MatDialogModule,
     MatIconModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
