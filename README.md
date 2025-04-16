@@ -48,7 +48,7 @@ A modern, privacy-focused Know Your Customer (KYC) verification system powered b
 - **UI**: Angular Material
 - **Cryptography**:
   - EdDSA (Edwards-curve Digital Signature Algorithm)
-  - Zero-Knowledge Proofs
+  - Zero-Knowledge Proofs ([Circom Circuits](https://github.com/alextmn/kyc-verification-circom))
   - Merkle Trees
 - **Tools**: Node.js, npm
 
